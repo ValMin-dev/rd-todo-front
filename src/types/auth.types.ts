@@ -1,0 +1,18 @@
+export interface IAuthForm {
+	email: string
+	password: string
+}
+
+export interface IUser {
+	email: string
+	name?: string
+	id: string
+	workInterval?: number
+	intervalNumber?: number
+	breakInterval?: number
+}
+
+export interface IAuthResponse {
+	accessToken: string
+	user: IUser
+}
