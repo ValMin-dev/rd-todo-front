@@ -3,7 +3,7 @@ import { axiosWithAuth } from '@/api/interceprots'
 
 export interface IProfileResponse {
 	user: IUser
-	statistics: {
+	stats: {
 		label: string
 		value: string
 	}[]

@@ -8,8 +8,8 @@ export interface IUser {
 	name?: string
 	id: string
 	workInterval?: number
-	intervalNumber?: number
 	breakInterval?: number
+	intervalsCount?: number
 }
 
 export interface IAuthResponse {
