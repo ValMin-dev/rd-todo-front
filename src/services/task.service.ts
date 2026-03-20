@@ -1,12 +1,12 @@
-import { ITaskResponse, TypeTaskState } from '@/types/tusk.tipes'
+import { ITaskResponse, TypeTaskState } from '@/types/task.tipes'
 import { axiosWithAuth } from '@/api/interceprots'
 
 class TaskService {
 	private BASE_URL = '/user/tasks'
 
 	async getTasks() {
-		const response = await axiosWithAuth.get<ITaskResponse>(this.BASE_URL)
-		return response
+		const response = await axiosWithAuth.get<ITaskResponse[]>(this.BASE_URL)
+		return response.data
 	}
 
 	async createTask(data: TypeTaskState) {
@@ -25,3 +25,5 @@ class TaskService {
 		return response
 	}
 }
+
+export const taskService = new TaskService()
