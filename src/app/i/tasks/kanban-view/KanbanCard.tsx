@@ -7,17 +7,17 @@ import { TransparentField } from '@/components/ui/fields/TransparentField'
 import { SingleSelect } from '@/components/ui/task-edit/SingleSelect'
 import { DatePicker } from '@/components/ui/task-edit/date-picker/DatePicker'
 import type { ITaskResponse, TypeTaskState } from '@/types/task.tipes'
+import Loader from '../../../../components/ui/Loader'
 import { useDeleteTask } from '../hooks/useDeleteTask'
 import { useTaskDebounce } from '../hooks/useTaskDebounce'
-import Loader from './../../../../components/ui/Loader'
-import styles from './ListView.module.scss'
+import styles from './KanbanView.module.scss'
 
-interface IListRow {
+interface IKanbanCard {
 	item: ITaskResponse
 	setItems: Dispatch<SetStateAction<ITaskResponse[] | undefined>>
 }
 
-export function ListRow({ item, setItems }: IListRow) {
+export function KanbanCard({ item, setItems }: IKanbanCard) {
 	const { register, control, watch } = useForm<TypeTaskState>({
 		defaultValues: {
 			name: item.name,
@@ -34,63 +34,61 @@ export function ListRow({ item, setItems }: IListRow) {
 	return (
 		<div
 			className={cn(
-				styles.row,
+				styles.card,
 				watch('isCompleted') ? styles.completed : '',
 				'animation-opacity'
 			)}
 		>
-			<div>
-				<span className='inline-flex items-center gap-2.5 w-full'>
-					<button area-describebly='todo-item'>
-						<GripVertical className={styles.grip} />
-					</button>
-
-					<Controller
-						control={control}
-						name='isCompleted'
-						render={({ field: { value, onChange } }) => {
-							return (
-								<Checkbox
-									onChange={onChange}
-									checked={value}
-								/>
-							)
-						}}
-					/>
-
-					<TransparentField {...register('name')} />
-				</span>
+			<div className={styles.cardHeader}>
+				<button aria-bescribedby='todo-item'>
+					<GripVertical className={styles.grip} />
+				</button>
+				<Controller
+					control={control}
+					name='isCompleted'
+					render={({ field: { value, onChange } }) => {
+						return (
+							<Checkbox
+								onChange={onChange}
+								checked={value}
+							/>
+						)
+					}}
+				/>
+				<TransparentField
+					{...register('name')}
+					placeholder='Task name'
+				/>
 			</div>
-
-			<div>
+			<div className={styles.cardBody}>
 				<Controller
 					control={control}
 					name='createdAt'
 					render={({ field: { value, onChange } }) => (
 						<DatePicker
 							value={value || ''}
+							position='left'
 							onChange={onChange}
 						/>
 					)}
 				/>
-			</div>
-			<div>
 				<Controller
 					control={control}
 					name='priority'
 					render={({ field: { value, onChange } }) => (
 						<SingleSelect
+							value={value || ''}
+							onChange={onChange}
 							data={['low', 'medium', 'high'].map(item => ({
 								value: item,
 								label: item
 							}))}
-							value={value || ''}
-							onChange={onChange}
 						/>
 					)}
 				/>
 			</div>
-			<div>
+
+			<div className={styles.cardActions}>
 				<button
 					onClick={() =>
 						item.id ? deleteTask(item.id) : setItems(prev => prev?.slice(0, -1))

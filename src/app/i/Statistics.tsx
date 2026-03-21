@@ -9,7 +9,7 @@ export default function Statistics() {
 	return isLoading ? (
 		<Loader />
 	) : (
-		<div className='grid grid-col-4 gap-12 mt-7'>
+		<div className='grid grid-cols-4 gap-12 mt-7'>
 			{data?.stats?.length ? (
 				data.stats.map(stat => (
 					<div

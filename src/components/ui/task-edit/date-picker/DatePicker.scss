@@ -1,8 +1,8 @@
 .rdp {
-	--rdp-cell-size: 32px;
-	--rdp-caption-height: 17px;
-	--rdp-background-color: var(--background-color);
-	--rdp-accent-color: var(--accent-color);
-	@apply m-1;
-	font-size: 85%;
+    --rdp-cell-size: 32px;
+    --rdp-caption-height: 17px;
+    --rdp-background-color: var(--background-color);
+    --rdp-accent-color: var(--accent-color);
+    font-size: 15%;
+    @apply m-1;
 }

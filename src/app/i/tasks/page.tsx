@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 import { Heading } from '@/components/ui/Heading'
 import { NO_INDEX_PAGE } from '@/constants/seo.constants'
-import TaskView from './TaskView'
+import TaskView from './TasksView'
 
 export const metadata: Metadata = {
 	title: 'Tasks',

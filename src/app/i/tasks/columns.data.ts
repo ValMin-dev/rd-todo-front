@@ -9,9 +9,9 @@ dayjs.extend(isoWeek)
 export const FILTERS: Record<string, Dayjs> = {
 	today: dayjs().startOf('day'),
 	tomorrow: dayjs().add(1, 'day').startOf('day'),
-	this_week: dayjs().startOf('week'),
+	this_week: dayjs().startOf('isoWeek'),
 	next_week: dayjs().add(1, 'week').startOf('day'),
-	later: dayjs().add(2, 'week').startOf('week'),
+	later: dayjs().add(2, 'week').startOf('day'),
 
 	completed: dayjs()
 }
@@ -29,6 +29,11 @@ export const COLUMNS = [
 		label: 'This week',
 		value: 'this_week'
 	},
+	,
+	{
+		label: 'Completed',
+		value: 'completed'
+	},
 	{
 		label: 'Next week',
 		value: 'next_week'
@@ -36,9 +41,5 @@ export const COLUMNS = [
 	{
 		label: 'Later',
 		value: 'later'
-	},
-	{
-		label: 'Completed',
-		value: 'completed'
 	}
 ]

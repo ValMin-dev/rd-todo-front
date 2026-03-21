@@ -22,8 +22,7 @@ export function SingleSelect({
 	isColorSelect
 }: ISingleSelect) {
 	const { isShow, setIsShow, ref } = useOutside(false)
-	const getValue = () =>
-		data.find(item => item.value === value)?.label || 'Select'
+	const selectedOption = data.find(item => item.value === value)
 
 	return (
 		<div
@@ -36,12 +35,14 @@ export function SingleSelect({
 					setIsShow(!isShow)
 				}}
 			>
-				{getValue() ? (
+				{value ? (
 					<Badge
 						variant={value}
 						className='capitalize'
 						style={isColorSelect ? { backgroundColor: value } : {}}
-					/>
+					>
+						{selectedOption?.label || value}
+					</Badge>
 				) : (
 					'Select'
 				)}
