@@ -5,7 +5,7 @@ import {
 import { axiosWithAuth } from '@/api/interceprots'
 
 class TimeBlockService {
-	private BASE_URL = '/user/time-block'
+	private BASE_URL = '/user/time-blocks'
 
 	async getTimeBlocks() {
 		const response = await axiosWithAuth.get<ITimeBlockResponse[]>(
